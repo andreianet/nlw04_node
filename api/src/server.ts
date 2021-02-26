@@ -1,3 +1,4 @@
 import { app } from "./app";
+import 'dotenv/config';
 
-app.listen(3030, () => console.log("Server is runing"));
+app.listen(7070, () => console.log("Server is runing"));

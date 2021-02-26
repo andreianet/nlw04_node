@@ -5,7 +5,8 @@ import fs from 'fs';
 
 class SendMailService{
     //atributo
-    private client: Transporter
+    private client: Transporter;
+
     constructor(){
         nodemailer.createTestAccount().then((account) => {
             const transporter = nodemailer.createTransport(
@@ -32,18 +33,19 @@ class SendMailService{
         //compila o template
         const mailTemplateParse = handlebars.compile(templateFileContent);
 
-        const html = mailTemplateParse(variables)
+        const html = mailTemplateParse(variables);
 
         const message = await this.client.sendMail({
             to, 
             subject,
             html,
-            from:"NPS <noreplay@nps.com.br>"
-        })
+            from:"NPS <noreplay@nps.com.br>",
+        });
+
         console.log("Message sent: %s", message.messageId);
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(message));
         
         
     }
 }
-export default new SendMailService()
+export default new SendMailService();
